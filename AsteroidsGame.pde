@@ -39,7 +39,7 @@ public void keyPressed(){
 		nyoom.setY((int)(Math.random()*500));
 		nyoom.setDirectionX(0);
 		nyoom.setDirectionY(0);
-		nyoom.setPointDirection((int)Math.random()*360);
+		nyoom.setPointDirection((int)(Math.random()*360));
 
 	}
 }
