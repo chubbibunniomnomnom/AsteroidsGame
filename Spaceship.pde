@@ -1,8 +1,5 @@
 class Spaceship extends Floater  
 {   
-    private int[] yxCorn;
-    private int[] yyCorn;
-    private int[] 
     public Spaceship(){
     	corners = 13;
     	int[] x = {20, 16, 8, 0, -12, -20, -12, -12, -20, -12, 0, 8, 16};
@@ -11,9 +8,7 @@ class Spaceship extends Floater
     	yCorners = y;
     	myCenterX = 250;
     	myCenterY = 250;
-    	myColor = #4ece52;
-        yxCorn = {-12, -20, -16, -28, -16, -20, -12};
-        yyCorn = {8, 6, 4, 0, -4, -6, -8};
+    	myColor = #124ba8;
     }
     public void setX(int x){myCenterX = x;}
     public int getX() {return (int)myCenterX;}
@@ -48,22 +43,21 @@ class Spaceship extends Floater
     endShape(CLOSE);
 
     noStroke();
-    fill(0);
+    fill(149, 186, 196);
     ellipse(5,0,16,16);
 
+    if (key == 'w'&& keyPressed == true){
+        noStroke();
+        fill(247, 164, 64);
+        triangle(-12, 8, -20, 6, -12, 2);
+        triangle (-12, -2, -20, -6, -12, -8);
+        triangle(-12, 6, -28, 0, -12, -6);
+        fill(245, 247, 165);
+        triangle(-12, 4, -24, 0, -12, -4);
+    }
     //"unrotate" and "untranslate" in reverse order
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
-
-    if (key == 'w'){
-        noStroke();
-        beginShape();
-        for (int nI = 0; nI < corners; nI++)
-        {
-          vertex(yxCorn[nI], yyCorn[nI]);
-        }
-        endShape(CLOSE);
-    }
   }
     //your code here
 }
