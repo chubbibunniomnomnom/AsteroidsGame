@@ -2,6 +2,7 @@
 Spaceship nyoom;
 Star[] stars = new Star[150];
 Asteroid[] asteroids = new Asteroid[30];
+ArrayList 
 public void setup() 
 {
 	size(500, 500);
