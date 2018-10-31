@@ -1,8 +1,8 @@
 //your variable declarations here
 Spaceship nyoom;
 Star[] stars = new Star[150];
-Asteroid[] asteroids = new Asteroid[30];
-ArrayList 
+ArrayList<Asteroid> rocks = new ArrayList<Asteroid>();
+int astNum = 30;
 public void setup() 
 {
 	size(500, 500);
@@ -10,8 +10,8 @@ public void setup()
 	for (int i = 0; i<stars.length; i++){
 		stars[i] = new Star();
 	}
-	for (int i = 0; i<asteroids.length; i++){
-		asteroids[i] = new Asteroid();
+	for (int i = 0; i<astNum; i++){
+		rocks.add(new Asteroid());
 		//your code here
 	}
 }
@@ -21,9 +21,14 @@ public void draw()
 	for (int i = 0; i < stars.length; i++){
 		stars[i].show();
 	}
-	for (int i = 0; i<asteroids.length; i++){
-		asteroids[i].show();
-		asteroids[i].move();
+	for (int i = 0; i<rocks.size(); i++){
+		rocks.get(i).show();
+		rocks.get(i).move();
+	}
+	for (int i = 0; i<rocks.size(); i++){
+		if (dist(nyoom.getX(), nyoom.getY(), rocks.get(i).getX(), rocks.get(i).getY()) < 15*(rocks.get(i).getScale())){
+			rocks.remove(i);
+		}
 	}
   	nyoom.show();
  	nyoom.move();
@@ -51,5 +56,6 @@ public void keyPressed(){
 		nyoom.setPointDirection((int)(Math.random()*360));
 
 	}
+	
 }
 
