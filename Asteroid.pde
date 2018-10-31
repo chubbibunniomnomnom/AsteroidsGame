@@ -8,7 +8,7 @@ class Asteroid extends Floater
 		int[] y = {8, 0, -8, -12, -8, 0, 4};
 		yCorners = y;
 		xCorners = x;
-		scale = (int)(Math.random()*4)+1;
+		scale = (int)(Math.random()*2)+2;
 		for (int i =0; i<corners; i++){
 			yCorners[i] = yCorners[i] *scale;
 		}
@@ -18,6 +18,10 @@ class Asteroid extends Floater
 		myColor = #838484;
 		myCenterX = (int)(Math.random()*500);
 		myCenterY = (int)(Math.random()*500);
+		myDirectionX = (Math.random()*5)-2;
+		myDirectionY = (Math.random()*5)-2;
+		myPointDirection = 0;
+		rotSpeed = (int)(Math.random()*5)-2;
 	}
 	public void setX(int x){myCenterX = x;}
     public int getX() {return (int)myCenterX;}
@@ -32,5 +36,8 @@ class Asteroid extends Floater
     public void move(){
     	turn(rotSpeed);
     	super.move();     
+    }
+    public int getScale(){
+    	return scale;
     }
 }
