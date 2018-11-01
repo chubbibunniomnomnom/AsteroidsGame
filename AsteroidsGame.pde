@@ -2,6 +2,7 @@
 Spaceship nyoom;
 Star[] stars = new Star[150];
 ArrayList<Asteroid> rocks = new ArrayList<Asteroid>();
+ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 int astNum = 30;
 public void setup() 
 {
@@ -25,9 +26,28 @@ public void draw()
 		rocks.get(i).show();
 		rocks.get(i).move();
 	}
+	//ship and asteroid collision
 	for (int i = 0; i<rocks.size(); i++){
 		if (dist(nyoom.getX(), nyoom.getY(), rocks.get(i).getX(), rocks.get(i).getY()) < 15*(rocks.get(i).getScale())){
 			rocks.remove(i);
+		}
+	}
+	for (int i = 0; i<bullets.size(); i++){
+		if (bullets.get(i).getX()> 500){
+			bullets.remove(i);
+		}
+		else if(bullets.get(i).getX() < 0){
+			bullets.remove(i);
+		}
+		else if (bullets.get(i).getY() > 500){
+			bullets.remove(i);
+		} 
+		else if(bullets.get(i).getY() < 0){
+			bullets.remove(i);
+		}
+		else {
+			bullets.get(i).show();
+			bullets.get(i).move();
 		}
 	}
   	nyoom.show();
@@ -48,13 +68,16 @@ public void keyPressed(){
 	else if (key == 'd'){
 		nyoom.turn(5);
 	} 
-	else if (key == ' '){
+	else if (key == ENTER){
 		nyoom.setX((int)(Math.random()*500));
 		nyoom.setY((int)(Math.random()*500));
 		nyoom.setDirectionX(0);
 		nyoom.setDirectionY(0);
 		nyoom.setPointDirection((int)(Math.random()*360));
 
+	}
+	else if (key == ' '){
+		bullets.add(new Bullet(nyoom));
 	}
 	
 }
