@@ -50,6 +50,16 @@ public void draw()
 			bullets.get(i).move();
 		}
 	}
+	// asteroid and bullet collision check
+	for (int i = 0; i < bullets.size(); i++){
+		for (int a = 0; a < rocks.size(); a++){
+			if (dist(rocks.get(a).getX(), rocks.get(a).getY(), bullets.get(i).getX(), bullets.get(i).getY()) < 15*(rocks.get(a).getScale())){
+				bullets.remove(i);
+				rocks.remove(a);
+				break;
+			}
+		}
+	}
   	nyoom.show();
  	nyoom.move();
   //your code here
