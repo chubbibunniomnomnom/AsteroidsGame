@@ -4,6 +4,7 @@ Star[] stars = new Star[150];
 ArrayList<Asteroid> rocks = new ArrayList<Asteroid>();
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 int astNum = 30;
+float health;
 public void setup() 
 {
 	size(500, 500);
@@ -15,6 +16,7 @@ public void setup()
 		rocks.add(new Asteroid());
 		//your code here
 	}
+	health = 1;
 }
 public void draw() 
 {
@@ -22,6 +24,14 @@ public void draw()
 	for (int i = 0; i < stars.length; i++){
 		stars[i].show();
 	}
+	//health bar
+	fill(255);
+	stroke(142, 142, 142);
+	strokeWeight(2);
+	rect(18, 18, 104, 24);
+	noStroke();
+	fill(211, 25, 25);
+	rect (20, 20, 100* health, 20);
 	for (int i = 0; i<rocks.size(); i++){
 		rocks.get(i).show();
 		rocks.get(i).move();
@@ -30,6 +40,7 @@ public void draw()
 	for (int i = 0; i<rocks.size(); i++){
 		if (dist(nyoom.getX(), nyoom.getY(), rocks.get(i).getX(), rocks.get(i).getY()) < 15*(rocks.get(i).getScale())){
 			rocks.remove(i);
+			health = health- 0.05;
 		}
 	}
 	for (int i = 0; i<bullets.size(); i++){
@@ -60,6 +71,13 @@ public void draw()
 			}
 		}
 	}
+	//win check 
+	/*
+	if (bullets.size() == 0){
+		background(0);
+		text()
+	}
+	*/
   	nyoom.show();
  	nyoom.move();
   //your code here
